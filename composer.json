@@ -1,0 +1,28 @@
+{
+    "name": "anomaly/str-plugin",
+    "type": "streams-addon",
+    "description": "A Streams Platform plugin that provides API access to Pyro's Str class.",
+    "keywords": [
+        "streams",
+        "plugin",
+        "str"
+    ],
+    "homepage": "http://pyrocms.com/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "PyroCMS, Inc.",
+            "email": "support@pyrocms.com",
+            "homepage": "http://pyrocms.com/",
+            "role": "Owner"
+        }
+    ],
+    "support": {
+        "email": "support@anomaly.is"
+    },
+    "autoload": {
+        "psr-4": {
+            "Anomaly\\StrPlugin\\": "src/"
+        }
+    }
+}
