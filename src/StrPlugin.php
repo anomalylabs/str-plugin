@@ -47,7 +47,7 @@ class StrPlugin extends Plugin
 
                     $arguments = array_slice(func_get_args(), 1);
 
-                    return call_user_func_array([$this->request, camel_case($name)], $arguments);
+                    return call_user_func_array([$this->str, camel_case($name)], $arguments);
                 }
             )
         ];

@@ -1,34 +1,90 @@
 # Usage
 
-The str plugin provides access to Pyro's `Str` class.
+### Humanize
 
-### Getting str values
+Convert a slug to a human readable string.
 
-To retrieve a str value you can use `str` _or_ `str_get`.
+    {% verbatim %}{{ str_humanize("Str Plugin") }} // str-plugin{% endverbatim %}
+
+### Camel Case
+
+Convert a string to a camel case string.
 
     {% verbatim %}
-    {{ str('key') }}
-    {{ str_get('key', 'Default') }}
+    {{ str_camel("Str Plugin") }} // StrPlugin
+    {{ str_studly("Str Plugin") }} // StrPlugin
     {% endverbatim %}
 
-You can also pull a value out of the str store.
+### Snake Case
+
+Convert a string to a snake case string.
+
+    {% verbatim %}{{ str_snake("Str Plugin") }} // str_plugin{% endverbatim %}
+
+### Partial Strings
+
+Return a partial segment of the original string.
 
     {% verbatim %}
-    {{ str_pull('key') }}
+    {{ str_truncate("This is too long.", 6, "...") }} // This is...
+    {{ str_substr("String Plugin", 0, 6) }}... // This i...
     {% endverbatim %}
 
-### Checking if a str value exists
-
-Use the `has` method to check if a str value exists.
-
-    {% verbatim %}{{ str_has('dummy') }}{% endverbatim %} // false
-
-### Retrieving the CSRF token
-
-In order to post forms you need to include the CSRF token.
+You can also finish strings using `cap`.
 
     {% verbatim %}
-    <input name="_token" name="{{ csrf_token() }}"/>
+    {{ str_cap("String Plugin", "!") }} // Str Plugin!
+    {{ str_cap("String Plugin!", "!") }} // Str Plugin!
+    {% endverbatim %}
 
-    {{ csrf_field() }} // Same output as above
+### Pluralization
+
+Change the pluralization of a word.
+
+    {% verbatim %}
+    {{ str_plural("Plugin") }} // Plugins
+    {{ str_singular("Plugins") }} // Plugin
+    {% endverbatim %}
+
+### String Matching
+
+Matching segments of a string and testing it's pattern.
+
+    {% verbatim %}
+    {{ str_is("* Plugin", "String Plugin") }} // true
+    {{ str_contains("String Plugin", "plugin") }} // true
+    {{ str_ends_with("String Plugin", "plugin") }} // true
+    {{ str_starts_with("String Plugin", "plugin") }} // false
+    {{ str_equals("Example", request_input("text")) // true or false
+    {% endverbatim %}
+
+### Changing Case
+
+Changing the case of a sentence.
+
+    {% verbatim %}
+    {{ str_lower("String Plugin") }} // string plugin
+    {{ str_upper("String Plugin") }} // STRING PLUGIN
+    {{ str_title("string plugin") }} // String Plugin
+    {{ str_words("string plugin") }} // String Plugin
+    {% endverbatim %}
+
+### ASCII Conversion
+
+Return the ASCII conversion of a character or string.
+
+    {% verbatim %}{{ str_ascii("©") }} // (c){% endverbatim %}
+
+### String Length
+
+Return the length of a string.
+
+### Random Strings
+
+Return strings of varying randomness.
+
+    {% verbatim %}
+    {{ str_random(16) }} // MWTgDvUyONLx22L4
+    {{ str_random_bytes(16) }} // ���ؗ3��;�0@t�
+    {{ str_quick_random(16) }} // LrLzfWY20c550WUx
     {% endverbatim %}
